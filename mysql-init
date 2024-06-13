@@ -1,0 +1,68 @@
+CREATE TABLE Client (
+  id INT PRIMARY KEY,
+  nom VARCHAR(255),
+  adresse VARCHAR(255)
+);
+
+CREATE TABLE Pizzaïolo (
+  id INT PRIMARY KEY,
+  nom VARCHAR(255),
+  spécialité VARCHAR(255)
+);
+
+CREATE TABLE Commande (
+  id INT PRIMARY KEY,
+  client_id INT,
+  total FLOAT,
+  statut VARCHAR(255),
+  date DATE,
+  FOREIGN KEY (client_id) REFERENCES Client(id)
+);
+
+CREATE TABLE Pizza (
+  id INT PRIMARY KEY,
+  nom VARCHAR(255),
+  ingrédients VARCHAR(255),
+  prix FLOAT,
+  image VARCHAR(255)
+);
+
+CREATE TABLE Boisson (
+  id INT PRIMARY KEY,
+  nom VARCHAR(255),
+  description VARCHAR(255),
+  prix FLOAT,
+  image VARCHAR(255)
+);
+
+CREATE TABLE Dessert (
+  id INT PRIMARY KEY,
+  nom VARCHAR(255),
+  description VARCHAR(255),
+  prix FLOAT,
+  image VARCHAR(255)
+);
+
+CREATE TABLE Facture (
+  id INT PRIMARY KEY,
+  commande_id INT,
+  total FLOAT,
+  date DATE,
+  FOREIGN KEY (commande_id) REFERENCES Commande(id)
+);
+
+CREATE TABLE Menu (
+  id INT PRIMARY KEY,
+  pizzas VARCHAR(255),
+  boissons VARCHAR(255),
+  desserts VARCHAR(255)
+);
+
+CREATE TABLE Panier (
+  id INT PRIMARY KEY,
+  client_id INT,
+  pizzas VARCHAR(255),
+  boissons VARCHAR(255),
+  desserts VARCHAR(255),
+  FOREIGN KEY (client_id) REFERENCES Client(id)
+);
